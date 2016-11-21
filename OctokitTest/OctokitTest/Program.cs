@@ -67,11 +67,12 @@ namespace OctokitTest
             Console.WriteLine("Get user info...");
 
             Console.WriteLine(
-                "User.Id: {0}; user.Name: {1}; user.Email: {2}; user.Location: {3}",
+                "User.Id: {0}; user.Name: {1}; user.Email: {2}; user.Location: {3}, user.AvatarUrl: {4}",
                 user.Id,
                 user.Name,
                 user.Email,
-                user.Location);
+                user.Location,
+                user.AvatarUrl);
         }
     }
 }
