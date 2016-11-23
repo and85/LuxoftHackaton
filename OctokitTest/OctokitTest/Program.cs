@@ -21,10 +21,13 @@ namespace OctokitTest
 
             _owner = "and85";
             _repository = "BloombergReaderWeb";
+            //_repository = "HackerRank";
 
-            GetReleases();
-            GetIssues();
-            GetUserInfo();
+            //GetReleases();
+            //GetIssues();
+            //GetUserInfo();
+            //GetCommits();
+            GetRating();
 #if DEBUG
             Console.WriteLine("END");
             Console.ReadLine();
@@ -43,6 +46,28 @@ namespace OctokitTest
                     release.TagName,
                     release.Name,
                     release.Author.Login);
+            }
+        }
+
+        private static async void GetRating()
+        {
+            var repository = await _client.Repository.Get(_owner, _repository);
+            
+            Console.WriteLine("Get rating...");
+            Console.WriteLine(repository.StargazersCount);
+        }
+
+        private static async void GetCommits()
+        {
+            var commits = await _client.Repository.Commit.GetAll(_owner, _repository);
+            Console.WriteLine("Get commits...");
+
+            foreach (var commit in commits)
+            {
+                Console.WriteLine(
+                    "commit.Commit.Message,: {0}; commit.Commit.Author: {1}",
+                    commit.Commit.Message,
+                    commit.Commit.Author.Name);
             }
         }
 
